@@ -3,13 +3,13 @@ const handlesignin = (req, res, db, bcrypt) => {
 	if(!email || !password) {
 		return res.status(400).json('incorrect form submission')
 	}
-	  db.select('email', 'hash').from('loginuser')
+	  db.select('email', 'hash').from('loginuser1')
 		.where('email', '=', email)
 		.then(data => {
 			const isValid = bcrypt.compareSync(password, data[0].hash);
 			console.log(isValid);
 			if (isValid) {
-				return db.select('*').from('signupuser')
+				return db.select('*').from('signupuser1')
 					  	.where('email', '=', email)
 					  	.then(user => {
 							res.json(user[0])

@@ -1,6 +1,6 @@
 const handleregister = (req, res, db, bcrypt) => {
-	const { email, name, password,lname,gender,age,songpref } = req.body;
-	if(!email || !name || !password) {
+	const { email, fname, password,lname,gender,age,songpref } = req.body;
+	if(!email || !fname || !password) {
 		return res.status(400).json('incorrect form submission')
 	}
     const hash = bcrypt.hashSync(password);
@@ -10,14 +10,14 @@ const handleregister = (req, res, db, bcrypt) => {
 				hash: hash,
 				email: email
 			})
-			.into('loginuser')
+			.into('loginuser1')
 			.returning('email')
 			.then(loginEmail => {
-				return trx('signupuser')
+				return trx('signupuser1')
 					.returning('*')
 					.insert({
 						email: loginEmail[0],
-						fname: name,
+						fname: fname,
 						lname:lname,
 						gender:gender,
 						age:age,

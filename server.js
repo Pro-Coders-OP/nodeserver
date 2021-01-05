@@ -9,14 +9,15 @@ const cors = require('cors');
 const knex = require('knex');
 
 const db = knex({
-    client: 'pg',
+  client: 'pg',
+  // version: '7.2',
   connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : 'prasad',
-    database : 'smartbrain'
+    host : 'bdooxyucbkggmdw4gaio-postgresql.services.clever-cloud.com',
+    user : 'uvcrukpblv6nxy8fqncy',
+    password : 'xzzRwn23kEKFbgl6nH0A',
+    database : 'bdooxyucbkggmdw4gaio'
   }
-  });
+});
 
 const app = express();
 app.use(bodyParser.json());
@@ -80,8 +81,8 @@ app.post('/Faceemo', (req,res) => { Faceemo.handleFaceemo(req, res, db, bcrypt) 
     
 // })
 
-app.listen(3001, ()=> {
-    console.log('app is running on port 3001');
+app.listen(3002, ()=> {
+    console.log('app is running on port 3002');
 })
 
 
