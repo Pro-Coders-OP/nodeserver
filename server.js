@@ -4,9 +4,12 @@ const bcrypt = require('bcrypt-nodejs');
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const Faceemo = require('./controllers/Faceemo');
+const Suggestion = require('./controllers/Suggestion');
+const Intersignin = require('./controllers/Intersignin')
 // const profile = require('./controllers/profile');
 const cors = require('cors');
 const knex = require('knex');
+
 
 const db = knex({
   client: 'pg',
@@ -28,12 +31,16 @@ app.use(cors());
 //   res.send('It is Working');
 // })
 
+
 app.post('/signin', (req,res) => { signin.handlesignin(req, res, db, bcrypt) })
 
 app.post('/register', (req,res) => { register.handleregister(req, res, db, bcrypt) })
 
 app.post('/Faceemo', (req,res) => { Faceemo.handleFaceemo(req, res, db, bcrypt) })
 
+app.post('/Suggestion', (req,res) => { Suggestion.handleSuggestion(req, res, db, bcrypt) })
+
+app.post('/Intersignin', (req,res) => { Intersignin.handleIntersignin(req, res, db, bcrypt) })
 // const database = {
 //     users : [
 //         {
