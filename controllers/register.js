@@ -1,7 +1,7 @@
 const handleregister = (req, res, db, bcrypt) => {
 	const { email, fname, password,lname,gender,age,songpref } = req.body;
 	if(!email || !fname || !password) {
-		return res.status(400).json('incorrect form submission')
+		return res.status(400).json('Please fill the details...')
 	}
     const hash = bcrypt.hashSync(password);
     
@@ -29,7 +29,7 @@ const handleregister = (req, res, db, bcrypt) => {
 			.then(trx.commit)
 			.catch(trx.rollback)
         })
-        .catch(err => res.status(400).json('Unable to Register'))
+        .catch(err => res.status(400).json('Email already linked with another account.please try using different account...'))
 	
 };
 

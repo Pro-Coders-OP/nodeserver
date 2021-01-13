@@ -1,9 +1,10 @@
 const handleFaceemo = (req, res, db) => {
-    const {fname,gender,age,songpref,emotion } = req.body;
+    const {email,fname,gender,age,songpref,emotion } = req.body;
 
-    db('surveyusers3')
+    db('surveyusers4')
     .returning('*')
     .insert({
+        email:email,
         fname:fname,
         gender:gender,
         age:age,
